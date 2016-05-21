@@ -1,0 +1,14 @@
+[debug] ----------------------------------------------------------------------
+[debug] Command:      C:\Program Files\nodejs\\node.exe C:\Program Files\nodejs\node_modules\firebase-tools\bin\firebase serve
+[debug] CLI Version:  3.0.0
+[debug] Platform:     win32
+[debug] Node Version: v0.10.25
+[debug] Time:         Fri May 20 2016 20:31:34 GMT-0600 (Mountain Daylight Time)
+[debug] ----------------------------------------------------------------------
+[debug] 
+[info] Starting Firebase development server...
+[info] 
+[info] Project Directory: C:\Users\th3br\test-projects\engage-starter-P2-dashboard
+[info] Public Directory: public
+[info] 
+[info] Server listening at: http://localhost:5000

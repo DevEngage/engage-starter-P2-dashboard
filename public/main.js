@@ -8,16 +8,17 @@ var persons = [
     {name: 'Moss', info: 'There\'s a fire Roy', img: 'imgres.jpg'}
 ]
 
-var tableList = [
-    {rank: '1', name: 'LoL', type: 'MOBA', cost: 'free',  year: '2010'},
-    {rank: '2', name: 'Half-Life', type: 'FPS', cost: '$19',  year: '2005'},
-    {rank: '3', name: 'StarCraft', type: 'RTS', cost: '$19',  year: '2008'}
-];
+// var tableList = [
+//     {rank: '1', name: 'LoL', type: 'MOBA', cost: 'free',  year: '2010'},
+//     {rank: '2', name: 'Half-Life', type: 'FPS', cost: '$19',  year: '2005'},
+//     {rank: '3', name: 'StarCraft', type: 'RTS', cost: '$19',  year: '2008'}
+// ];
 
 dashboard = {};
 
-dashboard.buildTable = function buildTable(value) {
-    if (value) {value = value.toLowerCase()}
+dashboard.buildTable = function buildTable(value, tableList) {
+    if (value) value = value.toLowerCase()
+    if (!tableList) tableList = [];
     tableElement.innerHTML = '';
     for (var i=0; i < tableList.length; i++) {
         var tr = document.createElement('TR');
@@ -59,7 +60,21 @@ dashboard.search = function search(value) {
     dashboard.buildTable(value);  
     dashboard.buildPersonsArea(value) 
     // }
-}
+};
+
+dashboard.addTableElement = function addTableElement() {
+     var name = document.getElementById('name-input').value;
+     firebase.database().ref('table-elements').push({
+         rank: '1' + Math.random() * 100, 
+         name: name, 
+         type: 'MOBA', 
+         cost: 'free', 
+         year: '2010'
+    });
+};
 
 dashboard.buildPersonsArea('');
-dashboard.buildTable('');
+
+firebase.database().ref('table-elements').on('child_added', function(data) {
+    dashboard.buildTable('', [data.val()]);
+});
